@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="ObszarRysowania" name="widget" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -142,24 +142,39 @@ border: 1px solid white; </string>
     <property name="title">
      <string>Plik</string>
     </property>
-    <addaction name="actionZapisz_jako"/>
-    <addaction name="actionZako_cz"/>
+    <addaction name="save"/>
+    <addaction name="exit"/>
    </widget>
    <addaction name="menuPlik"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionZapisz_jako">
+  <action name="save">
    <property name="text">
     <string>Zapisz jako...</string>
    </property>
   </action>
-  <action name="actionZako_cz">
+  <action name="exit">
    <property name="text">
     <string>Zakończ</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ObszarRysowania</class>
+   <extends>QWidget</extends>
+   <header>obszarrysowania.h</header>
+   <container>1</container>
+   <slots>
+    <slot>on_green_clicked()</slot>
+    <slot>on_blue_clicked()</slot>
+    <slot>on_yellow_clicked()</slot>
+    <slot>on_red_clicked()</slot>
+    <slot>on_erase_clicked()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

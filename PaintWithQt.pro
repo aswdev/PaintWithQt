@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    obszarrysowania.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    obszarrysowania.h
 
 FORMS += \
         mainwindow.ui
