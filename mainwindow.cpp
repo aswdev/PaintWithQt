@@ -21,4 +21,23 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+void MainWindow::mousePressEvent(QMouseEvent *zdarzenie)
+{
 
+}
+void MainWindow::mouseMoveEvent(QMouseEvent *zdarzenie)
+{
+
+}
+void MainWindow::mouseReleaseEvent(QMouseEvent *zdarzenie)
+{
+
+}
+void MainWindow::paintEvent(QPaintEvent *zdarzenie)
+{
+
+}
+void MainWindow::resizeEvent(QResizeEvent *zdarzenie)
+{
+
+}
