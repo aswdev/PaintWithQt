@@ -8,36 +8,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     drawField = new ObszarRysowania();
-
+    setFileName("picture");
     connect(ui->red, SIGNAL (clicked()), drawField, SLOT (on_red_clicked()));
     connect(ui->green, SIGNAL (clicked()), drawField, SLOT (on_green_clicked()));
     connect(ui->blue, SIGNAL (clicked()), drawField, SLOT (on_blue_clicked()));
     connect(ui->yellow, SIGNAL (clicked()), drawField, SLOT (on_yellow_clicked()));
     connect(ui->erase, SIGNAL (clicked()), drawField, SLOT (on_erase_clicked()));
-    connect(ui->save, SIGNAL (triggered()), drawField, SLOT (on_save_clicked()));
+    connect(ui->save, SIGNAL (triggered()), drawField, SLOT (on_save_clicked(const QString)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::mousePressEvent(QMouseEvent *zdarzenie)
+void MainWindow::setFileName(QString name)
 {
-
-}
-void MainWindow::mouseMoveEvent(QMouseEvent *zdarzenie)
-{
-
-}
-void MainWindow::mouseReleaseEvent(QMouseEvent *zdarzenie)
-{
-
-}
-void MainWindow::paintEvent(QPaintEvent *zdarzenie)
-{
-
-}
-void MainWindow::resizeEvent(QResizeEvent *zdarzenie)
-{
-
+    this->fileName = name;
 }

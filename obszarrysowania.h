@@ -7,8 +7,18 @@ class ObszarRysowania : public QWidget
 {
     Q_OBJECT
 public:
+    bool mRysowanie;
+    QImage mRysunek;
+    QColor mKolor;
+
+
     explicit ObszarRysowania(QWidget *parent = nullptr);
     QString fileName;
+    void mousePressEvent(QMouseEvent *zdarzenie);
+    void mouseMoveEvent(QMouseEvent *zdarzenie);
+    void mouseReleaseEvent(QMouseEvent *zdarzenie);
+    void paintEvent(QPaintEvent *zdarzenie);
+    void resizeEvent(QResizeEvent *zdarzenie);
 
 signals:
 

@@ -157,6 +157,7 @@ min-height:20px;</string>
     <slot>on_yellow_clicked()</slot>
     <slot>on_red_clicked()</slot>
     <slot>on_erase_clicked()</slot>
+    <slot>on_save_clicked()</slot>
    </slots>
   </customwidget>
  </customwidgets>

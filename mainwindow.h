@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <obszarrysowania.h>
+#include <iostream>
 
 namespace Ui {
 class MainWindow;
@@ -13,18 +14,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    QString fileName;
     ObszarRysowania* drawField;
+    void setFileName(QString name);
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 
 private:
     Ui::MainWindow *ui;
-    void mousePressEvent(QMouseEvent *zdarzenie);
-    void mouseMoveEvent(QMouseEvent *zdarzenie);
-    void mouseReleaseEvent(QMouseEvent *zdarzenie);
-    void paintEvent(QPaintEvent *zdarzenie);
-    void resizeEvent(QResizeEvent *zdarzenie);
 };
 
 #endif // MAINWINDOW_H

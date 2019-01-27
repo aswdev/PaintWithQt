@@ -11,20 +11,22 @@ ObszarRysowania::ObszarRysowania(QWidget *parent) : QWidget(parent)
 void ObszarRysowania::on_red_clicked()
 {
      qDebug() << "Kolor: " << "czerwony";
+     this->mKolor = Qt::red;     
 }
 void ObszarRysowania::on_blue_clicked()
 {
     qDebug() << "Kolor: " << "niebieski";
-    this->mKolor = Qt::red;
+    this->mKolor = Qt::blue;
 }
 void ObszarRysowania::on_yellow_clicked()
 {
     qDebug() << "Kolor: " << "żółty";
+    this->mKolor = Qt::yellow;    
 }
 void ObszarRysowania::on_green_clicked()
 {
     qDebug() << "Kolor: " << "zielony";
-
+    this->mKolor = Qt::green;    
 }
 void ObszarRysowania::on_erase_clicked()
 {
