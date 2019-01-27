@@ -10,10 +10,11 @@ public:
     bool mRysowanie;
     QImage mRysunek;
     QColor mKolor;
+    QString fileName;
 
 
     explicit ObszarRysowania(QWidget *parent = nullptr);
-    QString fileName;
+    ~ObszarRysowania();
     void mousePressEvent(QMouseEvent *zdarzenie);
     void mouseMoveEvent(QMouseEvent *zdarzenie);
     void mouseReleaseEvent(QMouseEvent *zdarzenie);

@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete drawField;
 }
 void MainWindow::setFileName(QString name)
 {
