@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->blue, SIGNAL (clicked()), drawField, SLOT (on_blue_clicked()));
     connect(ui->yellow, SIGNAL (clicked()), drawField, SLOT (on_yellow_clicked()));
     connect(ui->erase, SIGNAL (clicked()), drawField, SLOT (on_erase_clicked()));
-    connect(ui->save, SIGNAL (triggered()), drawField, SLOT (on_save_clicked(const QString)));
+    connect(ui->save, SIGNAL (triggered()), drawField, SLOT (on_save_clicked()));
 }
 
 MainWindow::~MainWindow()

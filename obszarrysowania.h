@@ -2,6 +2,7 @@
 #define OBSZARRYSOWANIA_H
 
 #include <QWidget>
+#include <QVector>
 
 class ObszarRysowania : public QWidget
 {
@@ -11,6 +12,8 @@ public:
     QImage mRysunek;
     QColor mKolor;
     QString fileName;
+    int * oldX = new int;
+    int * oldY = new int;
 
 
     explicit ObszarRysowania(QWidget *parent = nullptr);
@@ -21,6 +24,7 @@ public:
     void paintEvent(QPaintEvent *zdarzenie);
     void resizeEvent(QResizeEvent *zdarzenie);
 
+
 signals:
 
 public slots:
@@ -29,7 +33,7 @@ public slots:
     void on_yellow_clicked();
     void on_green_clicked();
     void on_erase_clicked();
-    bool on_save_clicked(const QString &fileName);
+    bool on_save_clicked();
 
 };
 

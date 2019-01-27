@@ -4,11 +4,11 @@
 #include <QPaintEvent>
 #include <qpainter.h>
 #include <QResizeEvent>
+#include <QFileDialog>
+
 ObszarRysowania::ObszarRysowania(QWidget *parent) : QWidget(parent)
 {
     setMouseTracking(true);
-    mRysunek = QImage(800, 300, QImage::Format_ARGB32);
-    mRysunek.fill(QColor(255, 255, 255));
 }
 ObszarRysowania::~ObszarRysowania()
 {
@@ -37,33 +37,70 @@ void ObszarRysowania::on_green_clicked()
 void ObszarRysowania::on_erase_clicked()
 {
     qDebug() << "Czynność: " << "Usuwanie";
+    int x = QWidget::width();
+    int y = QWidget::height();
+    QImage erased = QImage();
+    erased = QImage(x, y, QImage::Format_ARGB32);
+    erased.fill(QColor(255, 255, 255));
+    this->mRysunek = erased;
+    this->update();
 
 }
-bool ObszarRysowania::on_save_clicked(const QString &fileName)
+bool ObszarRysowania::on_save_clicked()
 {
     qDebug() << "Czynność: " << "Zapisywanie" << fileName;
-    return true;
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Zapisz obraz"), "", tr("PNG (*.png);;Wszystkie pliki (*)"));
+    if (fileName.isEmpty())
+    {
+            qDebug() << "Wystąpił błąd podczas tworzenia pliku.";
+
+            return false;
+    }
+    else
+    {
+        mRysunek.save(fileName, "PNG");
+        qDebug() << "Pomyślnie utworzono plik: " << fileName;
+
+        return true;
+    }
 }
 void ObszarRysowania::mousePressEvent(QMouseEvent *zdarzenie)
 {
     if (zdarzenie->buttons()==Qt::LeftButton)
     {
         qDebug() << "Nastąpiło kliknięcie lewego przycisku: " << zdarzenie;
+        mRysowanie = true;
     }
     if (zdarzenie->buttons()==Qt::RightButton)
     {
         qDebug() << "Nastąpiło kliknięcie prawego przycisku: " << zdarzenie;
+        mRysowanie = false;
     }
 }
 void ObszarRysowania::mouseMoveEvent(QMouseEvent *zdarzenie)
 {
-    qDebug() << "Pozycja myszy: " << zdarzenie->pos();
+    if(this->mRysowanie == true && zdarzenie->buttons()==Qt::LeftButton)
+    {
+        qDebug() << "Pozycja pędzla: " << zdarzenie->pos();
+
+        QPainter rysownik;
+        rysownik.begin(this);
+        rysownik.setPen(QPen(this->mKolor, 12, Qt::DashDotLine, Qt::RoundCap));
+        rysownik.drawLine(*oldX, *oldY, zdarzenie->x(), zdarzenie->y());
+        *oldX = zdarzenie->x();
+        *oldY = zdarzenie->y();
+        rysownik.end();
+
+        repaint();
+
+    }
 }
 void ObszarRysowania::mouseReleaseEvent(QMouseEvent *zdarzenie)
 {
     if (zdarzenie->buttons()==Qt::NoButton)
     {
         qDebug() << "Nastąpiło uwolnienie przycisku: " << zdarzenie;
+        mRysowanie = false;
     }
 }
 void ObszarRysowania::paintEvent(QPaintEvent *zdarzenie)
@@ -71,13 +108,23 @@ void ObszarRysowania::paintEvent(QPaintEvent *zdarzenie)
     qDebug() << "Nastąpiło rysowanie: " << zdarzenie;
     QPainter rysownik;
     rysownik.begin(this);
-    rysownik.drawImage(0, 0, this->mRysunek);
+    rysownik.drawImage(0, 0, mRysunek);
     rysownik.end();
+
 }
 void ObszarRysowania::resizeEvent(QResizeEvent *zdarzenie)
 {
     if (zdarzenie->size()!= zdarzenie->oldSize())
     {
         qDebug() << "Nastąpiła zmiana rozmiaru okna: " << zdarzenie;
+        int x = QWidget::width();
+        int y = QWidget::height();
+        QImage erased = QImage();
+        erased = QImage(x, y, QImage::Format_ARGB32);
+        erased.fill(QColor(255, 255, 255));
+        this->mRysunek = erased;
+        this->update();
+        this->update();
+
     }
 }
