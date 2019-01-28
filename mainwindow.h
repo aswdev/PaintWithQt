@@ -15,7 +15,6 @@ class MainWindow : public QMainWindow
 
 public:
     QString fileName;
-    ObszarRysowania* drawField;
     void setFileName(QString name);
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

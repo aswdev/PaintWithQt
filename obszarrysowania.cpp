@@ -12,27 +12,31 @@ ObszarRysowania::ObszarRysowania(QWidget *parent) : QWidget(parent)
 }
 ObszarRysowania::~ObszarRysowania()
 {
-    //
+    delete  oldX;
+    delete oldY;
 }
 void ObszarRysowania::on_red_clicked()
 {
      qDebug() << "Kolor: " << "czerwony";
+     QColor local;
+     local = Qt::red;
      this->mKolor = Qt::red;
+     qDebug() << local << " "<< mKolor << " " << &mKolor;
 }
 void ObszarRysowania::on_blue_clicked()
 {
     qDebug() << "Kolor: " << "niebieski";
-    this->mKolor = Qt::blue;
+    mKolor = Qt::blue;
 }
 void ObszarRysowania::on_yellow_clicked()
 {
     qDebug() << "Kolor: " << "żółty";
-    this->mKolor = Qt::yellow;
+    mKolor = Qt::yellow;
 }
 void ObszarRysowania::on_green_clicked()
 {
     qDebug() << "Kolor: " << "zielony";
-    this->mKolor = Qt::green;
+    mKolor = Qt::green;
 }
 void ObszarRysowania::on_erase_clicked()
 {
@@ -82,10 +86,10 @@ void ObszarRysowania::mouseMoveEvent(QMouseEvent *zdarzenie)
     if(this->mRysowanie == true && zdarzenie->buttons()==Qt::LeftButton)
     {
         qDebug() << "Pozycja pędzla: " << zdarzenie->pos();
-
         QPainter rysownik;
-        rysownik.begin(this);
+        rysownik.begin(&mRysunek);
         rysownik.setPen(QPen(this->mKolor, 12, Qt::DashDotLine, Qt::RoundCap));
+     qDebug()<< &mKolor << " " << this->mKolor;
         rysownik.drawLine(*oldX, *oldY, zdarzenie->x(), zdarzenie->y());
         *oldX = zdarzenie->x();
         *oldY = zdarzenie->y();

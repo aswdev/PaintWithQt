@@ -6,21 +6,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->widget->on_red_clicked();
 
-    drawField = new ObszarRysowania();
     setFileName("picture");
-    connect(ui->red, SIGNAL (clicked()), drawField, SLOT (on_red_clicked()));
-    connect(ui->green, SIGNAL (clicked()), drawField, SLOT (on_green_clicked()));
-    connect(ui->blue, SIGNAL (clicked()), drawField, SLOT (on_blue_clicked()));
-    connect(ui->yellow, SIGNAL (clicked()), drawField, SLOT (on_yellow_clicked()));
-    connect(ui->erase, SIGNAL (clicked()), drawField, SLOT (on_erase_clicked()));
-    connect(ui->save, SIGNAL (triggered()), drawField, SLOT (on_save_clicked()));
+    connect(ui->red, SIGNAL (clicked()), this->ui->widget, SLOT (on_red_clicked()));
+    connect(ui->green, SIGNAL (clicked()), this->ui->widget, SLOT (on_green_clicked()));
+    connect(ui->blue, SIGNAL (clicked()), this->ui->widget, SLOT (on_blue_clicked()));
+    connect(ui->yellow, SIGNAL (clicked()), this->ui->widget, SLOT (on_yellow_clicked()));
+    connect(ui->erase, SIGNAL (clicked()), this->ui->widget, SLOT (on_erase_clicked()));
+    connect(ui->save, SIGNAL (triggered()), this->ui->widget, SLOT (on_save_clicked()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete drawField;
 }
 void MainWindow::setFileName(QString name)
 {
